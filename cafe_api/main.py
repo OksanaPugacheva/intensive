@@ -150,4 +150,4 @@ def delete_menu(api_test_menu_id: UUID, db: Session = Depends(get_db)):
 
 
 def start_uvicorn():
-    uvicorn.run("cafe_api.main:app", reload=True)
+    uvicorn.run("cafe_api.main:app", port=8000, reload=True)
