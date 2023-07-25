@@ -3,11 +3,11 @@ from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy.orm import sessionmaker
 
 
-DATABASE_LOGIN = "ChangeMe"
-DATABASE_PASSWORD = "ChangeMe"
-DATABASE_NAME = "ChangeMe"
+DATABASE_LOGIN = "postgres"
+DATABASE_PASSWORD = "example"
+DATABASE_NAME = "postgres"
 
-engine = create_engine(f"postgresql://{DATABASE_LOGIN}:{DATABASE_PASSWORD}@localhost/{DATABASE_NAME}")
+engine = create_engine(f"postgresql://{DATABASE_LOGIN}:{DATABASE_PASSWORD}@db/{DATABASE_NAME}")
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 

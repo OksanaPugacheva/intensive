@@ -1,0 +1,11 @@
+services:
+  cafe_app:
+    build: .
+    ports:
+      - 8000:5000
+  db:
+    image: postgres
+    container_name: db
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example

@@ -4,11 +4,8 @@ import uvicorn
 from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
 
-import answer
-import crud
-import models
-import schemas
-from database import engine, SessionLocal
+from cafe_api import answer, crud, models, schemas
+from cafe_api.database import engine, SessionLocal
 
 app = FastAPI()
 models.Base.metadata.create_all(bind=engine)
@@ -150,4 +147,4 @@ def delete_menu(api_test_menu_id: UUID, db: Session = Depends(get_db)):
 
 
 def start_uvicorn():
-    uvicorn.run("cafe_api.main:app", reload=True)
+    uvicorn.run("cafe_api.main:app", host="0.0.0.0", port=5000, reload=True)

@@ -1,8 +1,8 @@
 from sqlalchemy.orm import Session
 import uuid
 
-import models
-import schemas
+import cafe_api.models as models
+import cafe_api.schemas as schemas
 
 
 def get_menu(target_menu_id: uuid.UUID, db: Session):
@@ -16,7 +16,7 @@ def get_menus(db: Session):
 
 
 def create_menu(db: Session, menu: schemas.MenuIn):
-    db_menu = models.Menu(id=uuid.uuid4(), title=menu.title, description=menu.description)
+    db_menu = models.Menu(title=menu.title, description=menu.description)
     db.add(db_menu)
     db.commit()
     db.refresh(db_menu)
@@ -57,8 +57,7 @@ def create_submenu(target_menu_id: uuid.UUID, db: Session, submenu: schemas.Subm
     menu = db.query(models.Menu).filter(models.Menu.id == target_menu_id).first()
     if menu is None:
         return None
-    db_submenu = models.Submenu(id=uuid.uuid4(),
-                                title=submenu.title,
+    db_submenu = models.Submenu(title=submenu.title,
                                 description=submenu.description,
                                 menu_id=target_menu_id)
     db.add(db_submenu)
@@ -95,8 +94,7 @@ def get_dishes(target_submenu_id: uuid.UUID, db: Session):
 
 
 def create_dish(target_submenu_id: uuid.UUID, db: Session, dish: schemas.DishIn):
-    db_dish = models.Dish(id=uuid.uuid4(),
-                          title=dish.title,
+    db_dish = models.Dish(title=dish.title,
                           description=dish.description,
                           price=dish.price,
                           submenu_id=target_submenu_id)
