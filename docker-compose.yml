@@ -1,11 +1,26 @@
 services:
-  cafe_app:
-    build: .
-    ports:
-      - 8000:5000
   db:
-    image: postgres
+    image: postgres:15.1-alpine
     container_name: db
     restart: always
     environment:
-      POSTGRES_PASSWORD: example
+      POSTGRES_PASSWORD: magic
+
+  cafe_app:
+    build: ./cafe_api
+    image: cafe_app
+    command: poetry run start
+    ports:
+      - 8000:5000
+    depends_on:
+      - db
+
+  tests:
+    build: ./tests
+    image: tests
+    container_name: tests
+    depends_on:
+      - cafe_app
+    network_mode: "host"
+    ports:
+      - '80:80'

@@ -7,11 +7,12 @@ readme = "README.md"
 packages = [{include = "cafe_api"}]
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.10"
 fastapi = "^0.100.0"
 uvicorn = {extras = ["standard"], version = "^0.23.1"}
 sqlalchemy = "^2.0.19"
-psycopg2 = "^2.9.6"
+psycopg2-binary = "^2.9.6"
+requests = "^2.31.0"
 
 
 [tool.poetry.scripts]

@@ -141,10 +141,13 @@ def delete_submenu(target_menu_id: UUID, target_submenu_id: UUID, db: Session = 
 def delete_menu(api_test_menu_id: UUID, db: Session = Depends(get_db)):
     menu = crud.delete_menu(target_menu_id=api_test_menu_id, db=db)
     if menu is None:
-        return {"status": True, "detail": "The menu has been delete"}
+        return {"status": True, "detail": "The menu has been deleted"}
     else:
         return {"status": False, "detail": "The menu hasn't been deleted"}
 
 
 def start_uvicorn():
-    uvicorn.run("cafe_api.main:app", host="0.0.0.0", port=5000, reload=True)
+    uvicorn.run("cafe_api.main:app",
+                host="0.0.0.0",
+                port=5000,
+                reload=True)

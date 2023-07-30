@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker
 
 
 DATABASE_LOGIN = "postgres"
-DATABASE_PASSWORD = "example"
+DATABASE_PASSWORD = "magic"
 DATABASE_NAME = "postgres"
 
 engine = create_engine(f"postgresql://{DATABASE_LOGIN}:{DATABASE_PASSWORD}@db/{DATABASE_NAME}")
