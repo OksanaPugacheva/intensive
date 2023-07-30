@@ -8,4 +8,4 @@
   * docker-compose up -d
 * Сервис запущен по адресу 127.0.0.1:8000
 * Для запуска тестов введите:
-  * docker-compose run tests -v
+  * docker-compose run tests pytest -v
