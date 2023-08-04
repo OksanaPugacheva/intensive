@@ -4,6 +4,7 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/.pytest_cache/v" />
       <excludeFolder url="file://$MODULE_DIR$/.pytest_cache" />
+      <excludeFolder url="file://$MODULE_DIR$/.mypy_cache" />
     </content>
     <orderEntry type="jdk" jdkName="Poetry (intensive) (3)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
