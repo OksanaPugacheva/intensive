@@ -13,33 +13,32 @@ class SubmenuRepository:
         self.model = models.Submenu
         self.db = db
 
-    def get_submenus(self, target_menu_id: uuid.UUID) -> list[type[models.Submenu]]:
+    def get_submenus(self, target_menu_id: uuid.UUID):
         menu = self.db.query(models.Menu).filter(models.Menu.id == target_menu_id).first()
         if menu is None:
             return []
         return menu.submenus
 
-    def get_submenu(self, target_submenu_id: uuid.UUID) -> models.Submenu:
+    def get_submenu(self, target_submenu_id: uuid.UUID):
         submenu = self.db.query(self.model).filter(self.model.id == target_submenu_id).first()
         return submenu
 
-    def create(self, target_menu_id: uuid.UUID, item_data: schemas.SubmenuIn) -> models.Submenu:
+    def create(self, target_menu_id: uuid.UUID, item_data: schemas.SubmenuIn):
         db_submenu = self.model(title=item_data.title,
                                 description=item_data.description,
                                 menu_id=target_menu_id)
         self.db.add(db_submenu)
         self.db.commit()
         self.db.refresh(db_submenu)
-        return self.get_submenu(target_submenu_id=db_submenu.id)
+        return db_submenu
 
-    def update(self, target_submenu_id: uuid.UUID, item_data: schemas.SubmenuIn) \
-            -> models.Submenu:
+    def update(self, target_submenu_id: uuid.UUID, item_data: schemas.SubmenuIn):
         self.db.query(self.model).filter(self.model.id == target_submenu_id).update(
             {'title': item_data.title, 'description': item_data.description})
         self.db.commit()
         return self.get_submenu(target_submenu_id=target_submenu_id)
 
-    def delete(self, target_submenu_id: uuid.UUID) -> models.Submenu:
+    def delete(self, target_submenu_id: uuid.UUID):
         submenu = self.db.query(self.model).get(target_submenu_id)
         if submenu:
             self.db.delete(submenu)
