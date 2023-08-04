@@ -4,8 +4,8 @@ from fastapi import Depends
 from sqlalchemy.orm import Session
 
 from cafe_api import schemas
-from cafe_api.db import models
-from cafe_api.db.database import get_db
+from cafe_api.database import models
+from cafe_api.database.db_connection import get_db
 
 
 class MenuRepository:

@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from cafe_api.db import models
+from cafe_api.database import models
 
 DATABASE_LOGIN = 'postgres'
 DATABASE_PASSWORD = 'magic'
