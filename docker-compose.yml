@@ -14,11 +14,3 @@ services:
       - 8000:5000
     depends_on:
       - db
-
-  tests:
-    build: ./tests
-    image: tests
-    container_name: tests
-    depends_on:
-      - cafe_app
-    network_mode: "host"
