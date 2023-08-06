@@ -7,7 +7,7 @@ DATABASE_LOGIN = 'postgres'
 DATABASE_PASSWORD = 'magic'
 DATABASE_NAME = 'postgres'
 
-engine = create_engine(f'postgresql://{DATABASE_LOGIN}:{DATABASE_PASSWORD}@localhost/{DATABASE_NAME}')
+engine = create_engine(f'postgresql://{DATABASE_LOGIN}:{DATABASE_PASSWORD}@db/{DATABASE_NAME}')
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 models.Base.metadata.create_all(bind=engine)

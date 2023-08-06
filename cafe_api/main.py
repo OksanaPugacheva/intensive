@@ -17,6 +17,6 @@ def homepage():
 
 def start_uvicorn():
     uvicorn.run('cafe_api.main:app',
-                # host="0.0.0.0",
+                host='0.0.0.0',
                 port=8000,
                 reload=True)

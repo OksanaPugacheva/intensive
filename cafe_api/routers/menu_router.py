@@ -2,17 +2,15 @@ from uuid import UUID
 
 from fastapi import APIRouter, Depends
 
-from cafe_api import answer, schemas
 from cafe_api.services.menu_service import MenuService
+from cafe_api.shemas import schemas
 
 router = APIRouter()
 
 
 @router.get('/menus', response_model=list[schemas.MenuOut], status_code=200)
 def get_menus(menu_service: MenuService = Depends()):
-    menus = list()
-    for menu in menu_service.get_menus():
-        menus.append(answer.menu_answer(menu))
+    menus = menu_service.get_menus()
     return menus
 
 
@@ -20,19 +18,19 @@ def get_menus(menu_service: MenuService = Depends()):
 def get_menu(target_menu_id: UUID, menu_service: MenuService = Depends()):
     menu = menu_service.get_menu(menu_id=target_menu_id)
     if menu is None:
-        return answer.menu_nf
+        return menu_service.menu_nf
     else:
-        return answer.menu_answer(menu)
+        return menu
 
 
 @router.post('/menus', response_model=schemas.MenuOut, status_code=201)
 def create_menu(item_data: schemas.MenuIn, menu_service: MenuService = Depends()):
-    return answer.menu_answer(menu_service.create(item_data=item_data))
+    return menu_service.create(item_data=item_data)
 
 
 @router.patch('/menus/{target_menu_id}', response_model=schemas.MenuOut, status_code=200)
 def update_menu(target_menu_id: UUID, item_data: schemas.MenuIn, menu_service: MenuService = Depends()):
-    return answer.menu_answer(menu_service.update(menu_id=target_menu_id, item_data=item_data))
+    return menu_service.update(menu_id=target_menu_id, item_data=item_data)
 
 
 @router.delete('/menus/{target_menu_id}', response_model=schemas.SomethingDelete)

@@ -1,6 +1,6 @@
 import uuid
 
-from sqlalchemy import UUID, Column, Float, ForeignKey, String
+from sqlalchemy import UUID, Column, ForeignKey, String
 from sqlalchemy.orm import DeclarativeBase, relationship
 
 
@@ -35,5 +35,5 @@ class Dish(Base):
     submenu_id = Column(UUID(as_uuid=True), ForeignKey('submenus.id'))
     title = Column(String)
     description = Column(String)
-    price = Column(Float)
+    price = Column(String)
     submenu = relationship('Submenu', back_populates='dishes')

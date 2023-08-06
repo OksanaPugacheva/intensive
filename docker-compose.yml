@@ -7,10 +7,16 @@ services:
       POSTGRES_PASSWORD: magic
 
   cafe_app:
-    build: ./cafe_api
+    build: .
     image: cafe_app
     command: poetry run start
     ports:
-      - 8000:5000
+      - 8000:8000
     depends_on:
       - db
+
+  redis:
+    container_name: redis
+    image: redis:latest
+    ports:
+      - "6379:6379"

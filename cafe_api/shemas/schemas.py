@@ -36,7 +36,7 @@ class SomethingDelete(BaseModel):
 class DishIn(BaseModel):
     title: str
     description: str
-    price: float
+    price: str
 
 
 class DishOut(BaseModel):
