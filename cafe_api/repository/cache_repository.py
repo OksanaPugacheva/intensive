@@ -8,10 +8,6 @@ def get_redis_client():
     return redis.Redis(host='redis', port=6379, db=0)
 
 
-#
-#
-
-
 class RedisCache:
     def __init__(self, redis_client: redis.Redis) -> None:
         self.redis_client = redis_client

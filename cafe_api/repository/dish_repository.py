@@ -31,7 +31,7 @@ class DishRepository:
         self.db.add(db_dish)
         self.db.commit()
         self.db.refresh(db_dish)
-        return db_dish
+        return self.get_dish(db_dish.id)
 
     def update(self, target_dish_id: uuid.UUID, item_data: schemas.DishIn):
         self.db.query(self.model).filter(self.model.id == target_dish_id).update(

@@ -32,7 +32,7 @@ def create_dish(target_menu_id: UUID, target_submenu_id: UUID, item_data: schema
     return dish
 
 
-@router.patch('/dishes/{target_dish_id}', response_model=schemas.DishOut, )
+@router.patch('/dishes/{target_dish_id}', response_model=schemas.DishOut)
 def update_dish(target_menu_id: UUID, target_submenu_id: UUID, target_dish_id: UUID, item_data: schemas.DishIn,
                 dish_service: DishService = Depends()):
     dish = dish_service.update(menu_id=target_menu_id, submenu_id=target_submenu_id, dish_id=target_dish_id,

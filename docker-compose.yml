@@ -9,6 +9,7 @@ services:
   cafe_app:
     build: .
     image: cafe_app
+    container_name: cafe_app
     command: poetry run start
     ports:
       - 8000:8000
@@ -20,3 +21,11 @@ services:
     image: redis:latest
     ports:
       - "6379:6379"
+
+  tests:
+    build: ./tests
+    image: tests
+    container_name: tests
+    depends_on:
+      - cafe_app
+    network_mode: "host"
